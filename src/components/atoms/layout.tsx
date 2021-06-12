@@ -1,4 +1,4 @@
-import '../util/normalize.css';
+import '../util/base.css';
 import React, { ReactElement } from 'react';
 
 export default function PageTemplate({

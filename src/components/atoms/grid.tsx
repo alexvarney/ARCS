@@ -10,12 +10,15 @@ interface IGridProps extends IVariantContainer {
 const Grid = ({ children, variants, columns = 12, ...rest }: IGridProps) => {
   return (
     <VC
-      variants={mergeVariants(variants, [
-        css`
-          display: grid;
-          grid-template-columns: repeat(${columns}, 1fr);
-        `,
-      ])}
+      variants={mergeVariants(
+        [
+          css`
+            display: grid;
+            grid-template-columns: repeat(${columns}, 1fr);
+          `,
+        ],
+        variants
+      )}
       {...rest}
     >
       {children}
@@ -29,15 +32,24 @@ interface ILayoutGridProps extends IGridProps {
 
 const LayoutGrid = ({ children, variants, ...rest }: ILayoutGridProps) => (
   <Grid
-    variants={mergeVariants(variants, [
-      css`
-        padding: 0 2rem;
-        max-width: ${LAYOUT_MAX_WIDTH + 'px'};
-        margin: 0 auto;
-        grid-column-gap: 1rem;
-        overflow: hidden;
-      `,
-    ])}
+    variants={mergeVariants(
+      [
+        css`
+          padding: 0 1rem;
+          max-width: ${LAYOUT_MAX_WIDTH + 'px'};
+          margin: 0 auto;
+          grid-column-gap: 1rem;
+          overflow: hidden;
+        `,
+        css`
+          padding: 0 2rem;
+        `,
+        css`
+          padding: 0 4rem;
+        `,
+      ],
+      variants
+    )}
     {...rest}
   >
     {children}
