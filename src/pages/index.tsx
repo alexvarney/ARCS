@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import VC from '../components/atoms/VariantContainer';
-import { Breakpoint as B } from '../components/util/Breakpoints';
+import VC from '../components/atoms/variant-container';
+import { Breakpoint as B } from '../components/util/config';
 
 // markup
 const IndexPage = () => {

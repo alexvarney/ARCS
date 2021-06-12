@@ -1,5 +1,5 @@
 import React, { ElementType, ReactElement, useMemo } from 'react';
-import { TVariantMap, TCSSProperties, mergeVariants } from '../util/Variants';
+import { TVariantMap, TCSSProperties, mergeVariants } from '../util/variants';
 
 import styled from '@emotion/styled';
 const _VariantContainer = styled.div``;

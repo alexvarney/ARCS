@@ -1,6 +1,6 @@
 import React from 'react';
 import { css, SerializedStyles } from '@emotion/react';
-import { VARIANTS, Breakpoint } from './Breakpoints';
+import { VARIANTS, Breakpoint } from './config';
 
 export type TCSSProperties = React.CSSProperties | SerializedStyles | null;
 
