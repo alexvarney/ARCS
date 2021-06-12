@@ -5,7 +5,7 @@ export enum Breakpoint {
   'xl' = 'xl',
 }
 
-export const VARIANTS = new Map<string, number>([
+export const VARIANTS = new Map<Breakpoint, number>([
   [Breakpoint.base, -1],
   [Breakpoint.md, 500],
   [Breakpoint.lg, 1024],

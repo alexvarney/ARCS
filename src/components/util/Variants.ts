@@ -1,11 +1,11 @@
 import React from 'react';
 import { css, SerializedStyles } from '@emotion/react';
-import { VARIANTS } from '../util/Breakpoints';
+import { VARIANTS, Breakpoint } from './Breakpoints';
 
 export type TCSSProperties = React.CSSProperties | SerializedStyles | null;
 
 export type TVariantMap = {
-  [x: string]: TCSSProperties;
+  [x in Breakpoint]?: TCSSProperties;
 };
 
 export const makeVariantBlock = (
@@ -55,18 +55,26 @@ export const mergeVariants = (
     : overrideStyles;
 
   const elementVariants = variantEntries.reduce(
-    (prev: TCSSProperties[], curr: [string, number]) => {
+    (prev: TCSSProperties[], curr: [Breakpoint, number]) => {
       const [key, minWidth] = curr;
 
-      const base = _base[key];
-      const override = _override[key];
+      const styles: TCSSProperties[] = [];
 
-      if (!base && !override) return prev;
+      if (_base[key]) {
+        styles.push(_base[key]!);
+      }
+      if (_override[key]) {
+        styles.push(_override[key]!);
+      }
 
-      return [...prev, makeVariantBlock(minWidth, [base, override])];
+      if (!styles.length) return prev;
+
+      return [...prev, makeVariantBlock(minWidth, styles)];
     },
     []
   );
+
+  console.log(baseStyles, overrideStyles);
 
   return elementVariants;
 };

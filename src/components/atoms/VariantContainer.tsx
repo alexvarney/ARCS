@@ -1,4 +1,4 @@
-import React, { ElementType, ReactElement } from 'react';
+import React, { ElementType, ReactElement, useMemo } from 'react';
 import { TVariantMap, TCSSProperties, mergeVariants } from '../util/Variants';
 
 import styled from '@emotion/styled';
@@ -17,7 +17,10 @@ const VariantContainer = ({
   children,
   as = 'div',
 }: IVariantContainer): ReactElement => {
-  const processedVariants = variants ? mergeVariants(variants, {}) : [];
+  const processedVariants = useMemo(
+    () => (variants ? mergeVariants(variants, {}) : []),
+    [variants]
+  );
 
   return (
     <_VariantContainer
