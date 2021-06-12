@@ -1,12 +1,12 @@
 import React, { ElementType, ReactElement, useMemo } from 'react';
-import { TVariantMap, TCSSProperties, mergeVariants } from '../util/variants';
+import { mergeVariants, TVariants } from '../util/variants';
 
 import styled from '@emotion/styled';
 const _VariantContainer = styled.div``;
 
 interface IVariantContainer {
   className?: string;
-  variants?: TVariantMap | TCSSProperties[];
+  variants?: TVariants;
   children?: React.ReactNode;
   as?: ElementType<any>;
 }
@@ -34,4 +34,5 @@ const VariantContainer = ({
   );
 };
 
-export default VariantContainer;
+export { VariantContainer as default, mergeVariants };
+export type { TVariants, IVariantContainer };

@@ -1,12 +1,14 @@
 import React from 'react';
 import { css, SerializedStyles } from '@emotion/react';
-import { VARIANTS, Breakpoint } from './config';
+import { BreakpointSizes, Breakpoint } from './config';
 
 export type TCSSProperties = React.CSSProperties | SerializedStyles | null;
 
 export type TVariantMap = {
   [x in Breakpoint]?: TCSSProperties;
 };
+
+export type TVariants = TVariantMap | TCSSProperties[];
 
 export const makeVariantBlock = (
   minWidth: number,
@@ -25,7 +27,7 @@ export const makeVariantBlock = (
       `;
 
 export const createVariantMap = (styles: TCSSProperties[]) => {
-  const variantKeys = Array.from(VARIANTS.keys());
+  const variantKeys = Array.from(BreakpointSizes.keys());
 
   const initialReducer: TVariantMap = {};
 
@@ -42,10 +44,10 @@ export const createVariantMap = (styles: TCSSProperties[]) => {
 };
 
 export const mergeVariants = (
-  baseStyles: TVariantMap | TCSSProperties[],
-  overrideStyles: TVariantMap | TCSSProperties[]
+  baseStyles?: TVariants,
+  overrideStyles?: TVariants
 ) => {
-  const variantEntries = Array.from(VARIANTS.entries());
+  const variantEntries = Array.from(BreakpointSizes.entries());
 
   const _base = Array.isArray(baseStyles)
     ? createVariantMap(baseStyles)
@@ -60,10 +62,10 @@ export const mergeVariants = (
 
       const styles: TCSSProperties[] = [];
 
-      if (_base[key]) {
+      if (_base && _base[key]) {
         styles.push(_base[key]!);
       }
-      if (_override[key]) {
+      if (_override && _override[key]) {
         styles.push(_override[key]!);
       }
 
@@ -73,8 +75,6 @@ export const mergeVariants = (
     },
     []
   );
-
-  console.log(baseStyles, overrideStyles);
 
   return elementVariants;
 };
