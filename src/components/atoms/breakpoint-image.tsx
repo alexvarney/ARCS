@@ -42,7 +42,9 @@ const BreakpointImage = ({ data, ...imageProps }: IBreakpointImage) => {
   const images = withArtDirection(getImage(base), imagesKeys);
 
   //@ts-ignore
-  return <GatsbyImage image={images} {...imageProps} />;
+  return (
+    <GatsbyImage className="art-directed" image={images} {...imageProps} />
+  );
 };
 
 export default BreakpointImage;

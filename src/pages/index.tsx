@@ -72,16 +72,37 @@ const IndexPage = () => {
             quae unde neque, suscipit enim ipsa fugit reiciendis possimus
             recusandae voluptas.
           </Text>
-          <BreakpointImage
-            data={{
-              [Breakpoint.base]: query.image3?.childImageSharp?.gatsbyImageData,
-              [Breakpoint.md]: query.image2?.childImageSharp?.gatsbyImageData,
-              [Breakpoint.sm]: query.image1?.childImageSharp?.gatsbyImageData,
-              [Breakpoint.lg]: query.image4?.childImageSharp?.gatsbyImageData,
-            }}
-            alt="some test images"
-            imgStyle={{ objectFit: 'contain' }}
-          ></BreakpointImage>
+          <VC
+            variants={[
+              null,
+              css`
+                & .art-directed {
+                  aspect-ratio: 1234 / 1851;
+                }
+              `,
+              css`
+                & .art-directed {
+                  aspect-ratio: 15 / 10;
+                }
+              `,
+              css`
+                & .art-directed {
+                  aspect-ratio: 1992 / 2988;
+                }
+              `,
+            ]}
+          >
+            <BreakpointImage
+              data={{
+                [Breakpoint.base]:
+                  query.image3?.childImageSharp?.gatsbyImageData,
+                [Breakpoint.md]: query.image2?.childImageSharp?.gatsbyImageData,
+                [Breakpoint.sm]: query.image1?.childImageSharp?.gatsbyImageData,
+                [Breakpoint.lg]: query.image4?.childImageSharp?.gatsbyImageData,
+              }}
+              alt="some test images"
+            ></BreakpointImage>
+          </VC>
         </VC>
       </Grid.Layout>
     </VC>
